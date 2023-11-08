@@ -5,28 +5,30 @@ import { reactive } from "vue";
 const estado = reactive({
   input1: 0,
   input2: 0,
-  operacao: ""
+  operacao: "",
+  resultado: 0
 });
 
 
 function operacoes()  {
         let operacao =  estado.operacao
+        let resultado = 0 
         if(operacao === "+"){
-          const resultado = parseInt(estado.input1) + parseInt(estado.input2)
+             resultado = parseInt(estado.input1) + parseInt(estado.input2)
           return resultado
         } else if(operacao === "-"){
-          const resultado = parseInt(estado.input1) - parseInt(estado.input2)
+            resultado = parseInt(estado.input1) - parseInt(estado.input2)
           return resultado
         } else if(operacao === "*"){
-          const resultado = parseInt(estado.input1) * parseInt(estado.input2)
+           resultado = parseInt(estado.input1) * parseInt(estado.input2)
           return resultado
         } else if(operacao === "/"){
-          const resultado = parseInt(estado.input1) / parseInt(estado.input2)
+           resultado = parseInt(estado.input1) / parseInt(estado.input2)
           return resultado
         } else {
           alert("Insira os valores para calcular")
         }
-
+        estado.resultado = resultado
         console.log(operacao)
       }
 </script>
