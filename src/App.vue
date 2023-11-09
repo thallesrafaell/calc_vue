@@ -1,6 +1,8 @@
 <script setup>
 import { reactive } from "vue";
-
+import Formulario from "./components/form.vue";
+import Cabecalho from './components/header.vue'
+import Resultado from './components/resultado.vue'
 
 const estado = reactive({
   input1: 0,
@@ -35,20 +37,9 @@ function operacoes()  {
 
 <template>
   <div class="container">
-    <h1>Calculadora</h1>
-    <form>
-      <input @keyup="(e) => estado.input1 = e.target.value" type="number" />
-      <select @change="(e) => estado.operacao = e.target.value">
-        <option selected></option>
-        <option>+</option>
-        <option >-</option>
-        <option >*</option>
-        <option >/</option>
-
-      </select>
-      <input @keyup="(e) => estado.input2 = e.target.value" type="number" />
-    </form>
-    <span>{{ operacoes() }}</span>
+    <Cabecalho/>
+    <Formulario :captura-input1="e => estado.input1 = e.target.value" :captura-input2="e => estado.input2 = e.target.value" :captura-select="(e) => estado.operacao = e.target.value"/>
+    <Resultado :funcao-operacao="operacoes()"/>
   </div>
 </template>
 
@@ -61,63 +52,10 @@ function operacoes()  {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.container{
   background-color: grey;
   padding: 20px;
   border-radius: 10px;
   color: white;
   font-family: sans-serif;
-}
-h1 {
-  text-align: center;
-}
-
-form{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-input {
-  height:  30px;
-  width: 80px;
-  font-size: 22px;
-  color: white;
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid white;
-  text-align: center;
-  outline-color: grey;
-}
-
-
-span{
-  display: block;
-  margin-top: 20px;
-  font-size: 22px;
-  font-weight: bold;
-  border: 3px dashed white;
-  width: 220px;
-  text-align: center;
-  padding: 8px;
-}
-
-select{
-  background-color: transparent;
-  color: white;
-  border: none;
-  border-bottom: 2px solid white;
-  height:  30px;
-  padding: 2px;
-  outline-color: grey;
-  
-}
-
-select:focus{
-  background-color: grey;
-  border: 1px solid white;
 }
 </style>
